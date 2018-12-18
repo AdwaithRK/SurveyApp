@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  answer: MyText
+  is_optional_answer: false
+  question: one
+  answer: one
+  survey: one
+
+two:
+  answer: MyText
+  is_optional_answer: false
+  question: two
+  answer: two
+  survey: two

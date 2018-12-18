@@ -10,12 +10,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_122556) do
+ActiveRecord::Schema.define(version: 2018_12_18_091600) do
+
+  create_table "answers", force: :cascade do |t|
+    t.text "answer"
+    t.boolean "is_optional_answer"
+    t.integer "question_id"
+    t.integer "answer_id"
+    t.integer "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["answer_id"], name: "index_answers_on_answer_id"
+    t.index ["question_id"], name: "index_answers_on_question_id"
+    t.index ["survey_id"], name: "index_answers_on_survey_id"
+  end
+
+  create_table "question_options", force: :cascade do |t|
+    t.text "option"
+    t.integer "question_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["question_id"], name: "index_question_options_on_question_id"
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.text "question"
+    t.integer "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "type"
+    t.boolean "is_optional_question", default: true
+    t.index ["survey_id"], name: "index_questions_on_survey_id"
+  end
 
   create_table "surveys", force: :cascade do |t|
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "link"
+    t.text "name"
+    t.index ["link"], name: "index_surveys_on_link", unique: true
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end
 

@@ -1,0 +1,19 @@
+
+<div class="login-div">
+  <nav class="nav-style-row">
+    <div class="container">
+      <%= form_for(:user, :url => session_path(:user), :html => {:class => "form-row"} ) do |f| %>
+          <div class="col">
+            <%= f.text_field :email, placeholder: "Email", class: "form-control form_container font-fb-copy" %>
+          </div>
+          <div class="col">
+            <%= f.password_field :password, placeholder: "Password", class: "form-control form_container font-fb-copy" %>
+            <%= link_to "Forgot your password?", new_password_path(:user), class: "font-fb-copy forgot-password" %>
+          </div>
+          <span class="d-inline-block">
+            <%= f.submit 'Sign in',class: "btn btn-primary btn-sm" %>
+          </span>
+      <%end%>
+    </div>
+  </nav>
+</div>

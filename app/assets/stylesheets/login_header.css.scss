@@ -1,0 +1,141 @@
+.post-actions {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.margin_for_button {
+  margin-left: 20px;
+}
+
+.form_container {
+  // float: right !important;
+  height: calc(1.25rem + 2px) !important;
+  margin-left: 10px !important;
+  width: 165.98863599999999px !important;
+}
+
+.publish-menu {
+  width: 226px;
+  margin-left: 50px;
+}
+
+
+.container {
+  // display: flex;
+  width: 480px;
+  float: right;
+
+}
+
+
+.font-fb-copy {
+  font-family: 'Liberation Sans', arial;
+  font-size: 15px !important;
+  line-height: 2 !important;
+  font-weight: 500;
+}
+
+.Logout-button {
+  position: relative;
+  left: 95%;
+  bottom: 10%;
+
+}
+
+.search-bar-style {
+  position: relative;
+  left: 40%;
+}
+
+
+.forgot-password {
+  padding-left: 20px;
+}
+
+.dark-black-color {
+  background-color: #000000;
+}
+
+.Title-style {
+  position: absolute;
+  bottom: 0;
+}
+
+.main-header-div {
+  display: flex;
+  // justify-content: space-between;
+  flex-direction: row-reverse
+}
+
+.login-div {
+  padding-top: 0%;
+}
+
+.nav-style {
+  padding-top: 2% !important;
+  padding-bottom: 0%;
+}
+
+
+.search-results-row {}
+
+.search-results {
+  position: absolute;
+  padding: 10px;
+  width: 230px;
+  background-color: white;
+  display: none;
+}
+
+
+.front-page {
+  flex-direction: row-reverse;
+  display: flex;
+}
+
+
+.sign-up {
+  margin-right: 10%;
+  width: 35%;
+  margin-top: 5%;
+}
+
+
+.style-pro-pic {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  left: 80%;
+  bottom: 20px;
+
+}
+
+
+.pro-pic {
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+}
+
+
+.comment-box {
+  display: flex;
+  width: 90%;
+}
+
+.gear-style {
+  width: 50px;
+  position: absolute;
+  color: white;
+  left: 900px;
+  bottom: 20px;
+  cursor: pointer;
+}
+
+
+.size-plus-button {
+  width: 25px;
+  height: 25px;
+}

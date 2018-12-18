@@ -10,6 +10,20 @@
   </head>
 
   <body>
+
+    <header class="navbar navbar-fixed-top dark-black-color nav-style">
+       <div class="col-sm-12 main-header-div">
+          <%if user_signed_in? %>
+              <%= render 'layouts/logout_header'%>
+          <%else%>
+            <%= render 'layouts/login_header' %>
+          <%end%>
+      </div>
+    </header>
+
+
+
+
     <%= yield %>
   </body>
 </html>
