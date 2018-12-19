@@ -1,0 +1,5 @@
+
+<%= survey_form.fields_for :questions do |question_form| %>
+  <%= question_form.text_field :question %>
+  <%= question_form.link_to_remove "Remove this question" %>
+<%end%>

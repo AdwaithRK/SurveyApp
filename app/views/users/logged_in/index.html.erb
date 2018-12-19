@@ -1,1 +1,34 @@
-<h1>hello world</h1>
+
+<%= nested_form_for @survey, url: 'users/logged_in/new' do |survey_form|%>
+
+<%= survey_form.text_field :name%>
+
+
+
+
+<%= survey_form.fields_for :questions do |question_form| %>
+  <%= question_form.text_field :question %>
+    <select>
+      <option value="volvo">Multiple choice Radio button</option>
+      <option value="saab">Multiple choice select dropdown</option>
+      <option value="opel">Text</option>
+      <option value="opel">Multiple choice using check box</option>
+      <option value="audi">Multiple choice using multiselection options</option>
+    </select>
+  <%= question_form.link_to_remove "Remove this question" %>
+
+
+
+  <div class="answers">
+
+    <%= question_form.fields_for :question_options do |question_option_form| %>
+      <%= question_option_form.text_field :question %>
+      <%= question_option_form.link_to_remove "Remove this option" %>
+    <%end%>
+    <p><%= question_form.link_to_add "Add a option", :question_options %></p>
+
+  </div>
+<%end%>
+<p><%= survey_form.link_to_add "Add a question", :questions %></p>
+
+<%end%>

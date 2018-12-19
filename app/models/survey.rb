@@ -1,6 +1,9 @@
 class Survey < ApplicationRecord
   belongs_to :user
-  has_many :questions
+  has_many :questions, dependent: :destroy
+  has_many :question_options, :through => :questions
+  accepts_nested_attributes_for :questions, :allow_destroy => true
+  accepts_nested_attributes_for :question_options, :allow_destroy => true
 
   validates :token, presence: true
   validates :token, uniqueness: true
