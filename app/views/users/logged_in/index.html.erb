@@ -1,34 +1,27 @@
 
-<%= nested_form_for @survey, url: 'users/logged_in/new' do |survey_form|%>
+<input value="Untitled form" class="title"> </input> <br>
 
-<%= survey_form.text_field :name%>
+<input placeholder="Form description" class="form-orientation"></input>
 
-
-
-
-<%= survey_form.fields_for :questions do |question_form| %>
-  <%= question_form.text_field :question %>
-    <select>
-      <option value="volvo">Multiple choice Radio button</option>
-      <option value="saab">Multiple choice select dropdown</option>
-      <option value="opel">Text</option>
-      <option value="opel">Multiple choice using check box</option>
-      <option value="audi">Multiple choice using multiselection options</option>
-    </select>
-  <%= question_form.link_to_remove "Remove this question" %>
-
-
-
-  <div class="answers">
-
-    <%= question_form.fields_for :question_options do |question_option_form| %>
-      <%= question_option_form.text_field :question %>
-      <%= question_option_form.link_to_remove "Remove this option" %>
-    <%end%>
-    <p><%= question_form.link_to_add "Add a option", :question_options %></p>
-
+<div class="form-orientation question-box">
+  <div class="question-holder" data-question-no="">
+    <input class="question" id="question" placeholder="Type your question here"></input>
+    <div class="question-type">
+      <div class="question-type-header type-header">
+        <label>Type of Question</label>
+      </div>
+      <div class="type-header">
+        <select name="question_type" id="question_type" class="question_type_selection">
+          <option disabled selected value> -- select an option -- </option>
+          <option value="Radio button">Radio button</option>
+          <option value="Dropdown">Dropdown</option>
+          <option value="Check box">Check box</option>
+          <option value="Multiselection options">Multiselection options</option>
+          <option value="Text">Text</option>
+        </select>
+      </div>
+      </div>
+    </div>
+    <div class="Answer_Options"></div>
   </div>
-<%end%>
-<p><%= survey_form.link_to_add "Add a question", :questions %></p>
-
-<%end%>
+</div>
