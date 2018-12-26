@@ -9,7 +9,7 @@ Array.prototype.clone = function () {
 function save_option() {
   var option_value
   var option_save = $("<div id='confirmed_option_div' class='confirmed_option_div'>")
-  if (option_count > 0 && selected_option != "Text") {
+  if (option_count > 0 && selected_option != "text") {
     option_save.append("<ul>")
     while (option_array.length > 0) {
       option_id_no = option_array.shift()
@@ -32,7 +32,7 @@ function save_option() {
 function save_question() {
   question = $('#question').val()
   var question_save = $("<div id='confirmed_question_div_" + confirmed_question_no + "' class='confirmed_question_div'>");
-  $(question_save).append("<div id='confirmed_question'>Q. " + question + "<span class='type-board'>type:"+selected_option+"</span></div>");
+  $(question_save).append("<div id='confirmed_question'>Q. " + question + "<span class='type-board'>type:" + selected_option + "</span></div>");
   return question_save;
 }
 
@@ -52,7 +52,7 @@ function initial_state_question_box() {
   $('.Answer_Options').empty().show()
   $('.save-question-button').remove()
 
-  if (selected_option == "Text") {
+  if (selected_option == "text") {
     debugger;
     $('.Answer_Options').append("<div><input type='text' value='' placeholder='text answer'  class='Answer_options_item' readonly /></div>")
   }
@@ -96,7 +96,7 @@ function AddQuestion() {
 function removeQuestion(index, confirmed_ques) {
   questionArray.splice(index, 1);
   debugger
-  $("#confirmed_question_div_" + confirmed_ques + "").hide('slow', function () { $("#confirmed_question_div_"+confirmed_ques+"").remove(); })
+  $("#confirmed_question_div_" + confirmed_ques + "").hide('slow', function () { $("#confirmed_question_div_" + confirmed_ques + "").remove(); })
 }
 
 function AddDeleteButton(index, question_save) {
@@ -105,14 +105,46 @@ function AddDeleteButton(index, question_save) {
 }
 
 
-function questionArrayToJson(){
-  QuestionJson = questionArray.map(function(individualquestion){
+function questionArrayToJson() {
+  QuestionArray = questionArray.map(function (individualquestion) {
+    question_obj = new Object
+    question_obj.question = individualquestion.question
+    question_obj.option_count = individualquestion.optionCount
+    question_obj.question_type = individualquestion.questionType
+    question_obj.has_options = individualquestion.has_options
     debugger
-      return individualquestion.GetJson()
-    }
-    )
+    new_options = individualquestion.options.map(function (e) {
+      obj = new Object
+      obj.option = e
+      return obj
+    })
     debugger
-    return QuestionJson
+    question_obj.question_options_attributes = new_options
+    return question_obj
+  }
+  )
+  debugger
+  return QuestionArray
+}
+
+
+function getSurveyTitle() {
+  return $('#survey-title').val()
+}
+
+function getFormDescription() {
+  return $('#form-description').val()
+}
+
+function getQuestionCount() {
+  return questionArray.length
+}
+
+function copyLink(this) {
+  this.val
+  debugger
+  document.execCommand('copy');
+  alert('copied')
 }
 
 

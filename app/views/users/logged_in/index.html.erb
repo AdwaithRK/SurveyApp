@@ -1,4 +1,10 @@
 <h1>helloo</h1>
 
-
 <%= button_to "New Survey", new_survey_path, method: :get %>
+
+
+<h3>You surveys </h3>
+
+ <% @surveys.each do |survey| %>
+  <%= survey.title %>  share link: <input  onclick="copyLink(this)"  value = "<%=root_url%>survey/<%=survey.link%>" style ="width:980px"/> <br>
+ <%end%>

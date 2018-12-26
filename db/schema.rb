@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_091600) do
+ActiveRecord::Schema.define(version: 2018_12_26_074521) do
 
   create_table "answers", force: :cascade do |t|
     t.text "answer"
@@ -38,8 +38,9 @@ ActiveRecord::Schema.define(version: 2018_12_18_091600) do
     t.integer "survey_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "type"
-    t.boolean "is_optional_question", default: true
+    t.integer "question_type"
+    t.boolean "has_options", default: true
+    t.integer "option_count"
     t.index ["survey_id"], name: "index_questions_on_survey_id"
   end
 
@@ -48,7 +49,9 @@ ActiveRecord::Schema.define(version: 2018_12_18_091600) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "link"
-    t.text "name"
+    t.text "title"
+    t.text "description"
+    t.integer "question_count"
     t.index ["link"], name: "index_surveys_on_link", unique: true
     t.index ["user_id"], name: "index_surveys_on_user_id"
   end

@@ -5,27 +5,23 @@ var selected_option
 var confirmed_question_no = 0
 var save_survey_flag = 0;
 
-$(document).on('turbolinks:load',function () {
+$(document).on('turbolinks:load', function () {
 
 
   $('select[name=question_type]').change(function () {
     selected_option = $(this).val();
-    debugger;
     option_array = [];
-    initial_state_question_box() 
+    initial_state_question_box()
   });
 
   $('body').on("click", ".Add_Answer_option_div", function () {
     option_array.push(++option_count);
-    debugger
     Add_option()
   })
 
   $('body').on("click", ".remove-option", function () {
-    debugger
     option_attr = this.getAttribute("data-remove-option-id")
     remove_option(option_attr)
-    debugger
   })
 
 
@@ -34,31 +30,35 @@ $(document).on('turbolinks:load',function () {
     ++confirmed_question_no
     question_save = save_question()
     option_save = save_option()
-    debugger
     $(question_save).append(option_save)
     index = AddQuestion()
-    question_save = AddDeleteButton(index,question_save)
+    question_save = AddDeleteButton(index, question_save)
     $(".confirmed-question-box").append(question_save)
     AddDeleteButton()
     $('#question').val('');
     add_save_survey_button()
     initial_state_question_box()
-    
+
   })
 
   $('body').on("click", ".save-survey-button", function () {
-    console.log("saving survey")
-    
+    surveytitle = getSurveyTitle()
+    form_description = getFormDescription()
+    questions = questionArrayToJson()
+    question_count = getQuestionCount()
+
+    $.ajax({
+      type: "POST",
+      url: "/surveys",
+      data: {
+        survey: { title: surveytitle, description: form_description, questions_attributes: questions, question_count: question_count }
+      }
+
+    }
+
+    )
+
+
   })
 
-
-  
 })
-
-
-
-
-
-
-
-

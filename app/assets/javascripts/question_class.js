@@ -1,33 +1,35 @@
 
-class Question{
-    constructor(){
-      this.question = ""
-      this.optionCount = 0
-      this.options = []
-      this.questionType = Text;
+class Question {
+    constructor() {
+        this.question = ""
+        this.optionCount = 0
+        this.options = []
+        this.questionType = "text"
+        this.has_options = false
     }
 
-    AssignQuesiton(question,questionType){
+    AssignQuesiton(question, questionType) {
         this.question = question
         this.questionType = questionType
+        if (questionType != "text") this.has_options = true
     }
 
-    AssignOption(options){
+    AssignOption(options) {
         this.optionCount = options.length
         this.options = options
     }
 
-    SaveQuestion(){
+    SaveQuestion() {
         questionArray.push(this)
     }
 
-    GetIndex(){
+    GetIndex() {
         return questionArray.indexOf(this)
-        
+
     }
 
-    GetJson(){
+    GetJson() {
         return JSON.stringify(this)
     }
-    
+
 }

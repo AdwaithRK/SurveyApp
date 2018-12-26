@@ -1,11 +1,9 @@
 class Users::LoggedInController < ApplicationController
  
  def index
-  #  @survey = current_user.surveys.new
-  # #  @survey.questions.build
-  #  p current_user
-  #  p @survey
-  #  @suvey.questions.build
+  @surveys = current_user.surveys
+  p request
+  @domain = request.host
  end
 
  def new
