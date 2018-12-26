@@ -33,6 +33,21 @@ input {
 
 .confirmed-question-box{
   box-shadow: .5px .5px .5px .5px #888888;
+  // padding-top: 30px;
+  // padding-left: 30px;
+  // padding-bottom: 30px;
+  // display: none;
+}
+
+.confirmed_question_div{
+  margin-left: 30px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.confirmed_option_div{
+  padding-left: 30px;
+  padding-top: 10px;
 }
 
 .question {
@@ -47,7 +62,9 @@ input {
 }
 
 .question-holder {
-  display: flex
+  display: flex;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .question-type {
@@ -58,6 +75,8 @@ input {
   width: 312px;
   margin-right: 10px
 }
+
+
 
 .Answer_options_item{
     width: 298px;
@@ -79,4 +98,15 @@ input {
   margin-left: 30px;
   margin-top: 30px;
   margin-bottom: 20px;
+}
+.save-survey-button{
+  margin-bottom: 50px
+}
+
+.delete-question-button{
+  padding-left: 95%;
+}
+
+.type-board{
+  margin-left: 50%;
 }
