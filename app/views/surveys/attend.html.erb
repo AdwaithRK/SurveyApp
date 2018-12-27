@@ -1,0 +1,30 @@
+<div class = "title"><%= @survey.title%></div>
+<div class = "form-orientation"><%= @survey.description%></div>
+
+
+<div class="form-orientation question-box">
+  <ul>
+  <%@survey.questions.each do |question|%>
+    <li><div class = "question-holder"><span class="question"><%= question.question%></span></div>
+      <ul>
+      <%byebug%>
+      <%input_type = question.question_type%>
+      <% if input_type == "text" %>
+        <li><textarea rows="4" cols="50" name="comment">
+      <%elsif input_type == "drop_down"%>
+        <li><select>
+        <%question.question_options.each do |option|%>
+          <option><%=option.option %></option>
+        <%end%>
+        </select>
+      <%else%>
+        <form>
+          <%question.question_options.each do |option|%>
+            <input type="<%=input_type%>" name="option" value="<%=option%>" checked><%=option%><br>
+          <%end%>
+        </form>
+      <%end%>
+      </ul>
+  <%end%>
+  </ul>
+</div>

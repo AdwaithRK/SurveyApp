@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # get '/register', to: 'devise/registrations#new'
 
   resources :surveys, only: [ :new, :create]
+
+  get '/surveys/:link', to: 'surveys#attend'
   
 end

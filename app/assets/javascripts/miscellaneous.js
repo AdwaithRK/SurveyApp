@@ -88,8 +88,12 @@ function AddQuestion() {
   questionObj.AssignQuesiton(question, selected_option)
   questionObj.AssignOption(optionsArray)
   questionObj.SaveQuestion()
+  EmptyOptionsArray()
   return questionObj.GetIndex()
+}
 
+function EmptyOptionsArray() {
+  optionsArray = []
 }
 
 
@@ -106,14 +110,15 @@ function AddDeleteButton(index, question_save) {
 
 
 function questionArrayToJson() {
-  QuestionArray = questionArray.map(function (individualquestion) {
+  let QuestionArray = questionArray.map(function (individualquestion) {
+    debugger
     question_obj = new Object
     question_obj.question = individualquestion.question
     question_obj.option_count = individualquestion.optionCount
     question_obj.question_type = individualquestion.questionType
     question_obj.has_options = individualquestion.has_options
     debugger
-    new_options = individualquestion.options.map(function (e) {
+    let new_options = individualquestion.options.map(function (e) {
       obj = new Object
       obj.option = e
       return obj
@@ -140,12 +145,7 @@ function getQuestionCount() {
   return questionArray.length
 }
 
-function copyLink(this) {
-  this.val
-  debugger
-  document.execCommand('copy');
-  alert('copied')
+function copyLink(elem) {
+  elem.select()
+  document.execCommand('copy')
 }
-
-
-

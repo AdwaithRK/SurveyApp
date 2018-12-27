@@ -25,7 +25,6 @@ class Question {
 
     GetIndex() {
         return questionArray.indexOf(this)
-
     }
 
     GetJson() {
