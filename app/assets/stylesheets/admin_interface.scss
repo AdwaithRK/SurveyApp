@@ -28,6 +28,7 @@ input {
 
 .question-box {
   box-shadow: .5px .5px .5px .5px #888888;
+  padding-bottom: 50px;
   // border: 1px solid
 }
 
@@ -109,5 +110,9 @@ input {
 
 .type-board{
   margin-left: 50%;
+}
+
+.save-response-button{
+    margin-bottom: 50px;
 }
 

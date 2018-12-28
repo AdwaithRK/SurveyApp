@@ -12,4 +12,9 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_link(params[:link])
   end
 
+  def submit
+    p "here in submit"
+    p params[:question_array]
+  end
+
 end
