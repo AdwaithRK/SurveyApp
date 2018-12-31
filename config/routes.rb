@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   resources :surveys, only: [ :new, :create]
 
+  post '/surveys/stats', to: 'surveys#stats'
+
   get '/surveys/:link', to: 'surveys#attend'
   post '/surveys/submit', to: 'surveys#submit'
   
