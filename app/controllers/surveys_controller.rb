@@ -19,11 +19,14 @@ class SurveysController < ApplicationController
     attempt_id = Attempt.create(survey_id: params[:survey_id]).id
     answers = format_question(params[:question_array], params[:survey_id], attempt_id)
     Answer.create(answers)
+    #answer = Answer.save(answers)
+    #if answer.save
     unless current_user
       redirect_to surveys_thanks_url
     else
       redirect_to logged_in_url
     end
+    #end
   end
 
   def thanks; end
