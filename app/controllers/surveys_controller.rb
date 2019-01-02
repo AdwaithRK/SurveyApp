@@ -7,6 +7,7 @@ class SurveysController < ApplicationController
 
   def create
     current_user.surveys.create(params[:survey])
+    redirect_to logged_in_url
   end
 
   def new; end
@@ -53,11 +54,13 @@ class SurveysController < ApplicationController
   end
 
   def permit_answer_array
-    params.permit(:survey_id, question_array: [:question_id, :answer_text])
+    # params.permit(:survey_id, question_array: [:question_id, :answer_text])
+    params.permit!
   end
 
   def permit_survey_answer
-    params.permit(survey: [:title, :description, :questions_attributes])
+    # params.permit(survey: [:title, :description, :questions_attributes])
+    params.permit!
   end
 
   def send_csv(csv)
