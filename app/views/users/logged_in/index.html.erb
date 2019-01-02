@@ -4,13 +4,14 @@
 
   <div class="survey-share-stats-table">
     <h3>You surveys </h3>
-    <table>
-    <tr> <td>survey title</td> <td>sharable link</td> <td>download csv</td> </tr>
+    <table class="front-table">
+    <tr> <td>survey title</td> <td>sharable link</td> <td>download csv</td> <td>invite</td> </tr>
     <% @surveys.each do |survey| %>
       <tr>
-      <td><%=survey.title %></td>  <td><input  onclick="copyLink(this)"  value = "<%=root_url%>surveys/<%=survey.link%>" style ="width:980px"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
+      <td width="10%"><%=survey.title %></td>  <td class="link-copied-shared"><input  onclick="copyLink(this)"  value = "<%=root_url%>surveys/<%=survey.link%>"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
         <!-- <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %> -->
-        <td><%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %></td>
+      <td><%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %></td>
+      <td>invite email</td>
       </tr>
     <%end%>
     </table>
