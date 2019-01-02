@@ -89,7 +89,9 @@
 }
 
 
-.front-page {
+.front-page {    margin-left: 10px;
+    margin-top: 10px;
+    margin-bottom: 10px;
   flex-direction: row-reverse;
   display: flex;
 }
@@ -143,4 +145,9 @@
 .home-button{
   position: absolute;
   bottom: 0px
+}
+.new-survey-button{
+  margin-left: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }

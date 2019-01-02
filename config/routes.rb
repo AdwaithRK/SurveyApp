@@ -7,10 +7,21 @@ Rails.application.routes.draw do
 
   get '/logged_in', to: 'users/logged_in#index'
   # get '/register', to: 'devise/registrations#new'
+  get '/surveys/:link', to: 'surveys#attend'
+
+  # these routes can be rewritten as collection below
   resources :surveys, only: [:new, :create]
   get '/surveys/stats', to: 'surveys#stats'
   get  '/surveys/thanks', to: 'surveys#thanks'
-  get '/surveys/:link', to: 'surveys#attend'
   post '/surveys/submit', to: 'surveys#submit'
+  #rewritten
+
+  resources :surveys, only: [:new, :create] do
+    collection do
+      get 'stats'
+      get 'thanks'
+      post 'submit'
+    end
+  end
   
 end
