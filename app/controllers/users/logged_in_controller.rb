@@ -1,14 +1,11 @@
 class Users::LoggedInController < ApplicationController
- 
- def index
-  @surveys = current_user.surveys
- end
 
- def new
+  before_action :authenticate_user!
+  def index
+    @surveys = current_user.surveys
+  end
 
- end
- 
+  def new
 
-
-
+  end
 end

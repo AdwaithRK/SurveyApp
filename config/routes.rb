@@ -7,11 +7,9 @@ Rails.application.routes.draw do
 
   get '/logged_in', to: 'users/logged_in#index'
   # get '/register', to: 'devise/registrations#new'
-
-  resources :surveys, only: [ :new, :create]
-
-  post '/surveys/stats', to: 'surveys#stats'
-
+  resources :surveys, only: [:new, :create]
+  get '/surveys/stats', to: 'surveys#stats'
+  get  '/surveys/thanks', to: 'surveys#thanks'
   get '/surveys/:link', to: 'surveys#attend'
   post '/surveys/submit', to: 'surveys#submit'
   

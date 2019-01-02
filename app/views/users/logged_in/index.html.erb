@@ -1,13 +1,13 @@
-<h1>helloo</h1>
+
 
 <%= button_to "New Survey", new_survey_path, method: :get %>
 
-
-<h3>You surveys </h3>
-
 <div class="survey-share-stats-table">
+  <h3>You surveys </h3>
   <% @surveys.each do |survey| %>
-    <%= survey.title %>  share link: <input  onclick="copyLink(this)"  value = "<%=root_url%>surveys/<%=survey.link%>" style ="width:980px"></input> <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:post} %>
+    <%= survey.title %>  share link: <input  onclick="copyLink(this)"  value = "<%=root_url%>surveys/<%=survey.link%>" style ="width:980px"></input> <!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
+      <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %>
+      <%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %>
       <br>
   <%end%>
 </div>
