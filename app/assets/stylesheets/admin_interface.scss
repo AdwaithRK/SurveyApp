@@ -122,8 +122,8 @@ input {
 }
 
 .front-table{
-  width:100%;
-  max-width: 900px;
+  width:80%;
+  // max-width: 900px;
   border: solid 1px #a2a0a0;
   margin-left: 20px;
   margin-bottom: 20px;
@@ -131,5 +131,16 @@ input {
 
 td {
     width: 25%;
+}
+
+.new-survey-button{
+  flex-direction: row-reverse;
+  position: relative;
+  right: 8%;
+}
+
+.invite:hover{
+  color: blue;
+  cursor: pointer; 
 }
 

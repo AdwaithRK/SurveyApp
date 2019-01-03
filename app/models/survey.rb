@@ -28,4 +28,13 @@ class Survey < ApplicationRecord
     end
   end
 
+  def self.format_question(question_array, survey_id, attempt_id,current_user)
+    answers = Array.new()
+    user_id = current_user.id if current_user
+    question_array.each do |key, value|
+      answers.push({question_id: value[:question_id], survey_id: survey_id, attempt_id: attempt_id, answer: value[:answer_text], user_id: user_id})
+    end
+    answers
+  end
+
 end
