@@ -37,6 +37,7 @@ class SurveysController < ApplicationController
   end
 
   def stats
+    @survey = Survey.find_by_link(params[:link])
     respond_to do |format|
       format.js
       format.csv { send_csv(Answer.generate_csv(params[:link])) }

@@ -4,7 +4,6 @@ class Answer < ApplicationRecord
   belongs_to :survey
   belongs_to :attempt
 
-
   def self.format_question(question_array, survey_id, attempt_id,current_user)
     answers = Array.new()
     user_id = current_user.id if current_user
@@ -13,7 +12,6 @@ class Answer < ApplicationRecord
     end
     answers
   end
-
 
   def self.generate_csv(link)
     @survey = Survey.find_by_link(link)
