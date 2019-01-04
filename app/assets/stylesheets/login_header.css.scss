@@ -40,7 +40,7 @@
   position: relative;
   left: 95%;
   bottom: 10%;
-
+  cursor: pointer;
 }
 
 .search-bar-style {
@@ -60,6 +60,8 @@
 .Title-style {
   position: absolute;
   bottom: 0;
+  width: 250px;
+  right: 800px;
 }
 
 .main-header-div {

@@ -1,4 +1,4 @@
-input:focus {
+.survey_input:focus {
   border-bottom: 8px solid violet;
 }
 
@@ -127,6 +127,7 @@ input {
   border: solid 1px #a2a0a0;
   margin-left: 20px;
   margin-bottom: 20px;
+  table-layout: fixed;
 }
 
 td {

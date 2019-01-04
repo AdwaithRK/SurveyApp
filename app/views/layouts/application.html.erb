@@ -10,12 +10,14 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   </head>
 
   <body>
 
     <header class="navbar navbar-fixed-top dark-black-color nav-style">
       <div class="col-sm-12 main-header-div">
+          <img src="<%= asset_path( 'survey_app_logo.png' ) %>" class="Title-style"/>
           <%if user_signed_in? %>
               <%= render 'layouts/logout_header'%>
           <%else%>
@@ -24,5 +26,7 @@
       </div>
     </header>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p> 
   </body>
 </html>

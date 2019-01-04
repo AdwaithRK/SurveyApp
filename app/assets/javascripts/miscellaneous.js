@@ -58,7 +58,7 @@ function initial_state_question_box() {
   }
   else {
     option_array.push(++option_count)
-    $('.Answer_Options').append("<div id='option-" + option_count + "'><input type='text' value='' placeholder='Option 1'  id= 'option_" + option_count + "' class='Answer_options_item'required/><span color='blue' class='remove-option' data-remove-option-id=" + option_count + "><i class='fa fa-trash' aria-hidden='true'></i></span></div>")
+    $('.Answer_Options').append("<div id='option-" + option_count + "'><input type='text' value='' placeholder='Option 1'  id= 'option_" + option_count + "' class='Answer_options_item survey_input'required/><span color='blue' class='remove-option' data-remove-option-id=" + option_count + "><i class='fa fa-trash' aria-hidden='true'></i></span></div>")
     $('.Answer_Options').append("<div class='Add_Answer_option_div'><font color='blue' class='Add_Answer_options_item'>Add option</font></div>")
   }
   $('.question-box').append("<button type='button' class='save-question-button btn btn-primary'>save question</button>")
@@ -66,7 +66,7 @@ function initial_state_question_box() {
 
 function Add_option() {
   $('.Add_Answer_option_div').remove()
-  $('.Answer_Options').append("<div id='option-" + option_count + "'><input type='text' value='' placeholder='Option " + option_count + "' id= 'option_" + option_count + "'  class='Answer_options_item'/><span color='blue' class='remove-option' data-remove-option-id=" + option_count + "><i class='fa fa-trash' aria-hidden='true'></i></span></div>")
+  $('.Answer_Options').append("<div id='option-" + option_count + "'><input type='text' value='' placeholder='Option " + option_count + "' id= 'option_" + option_count + "'  class='Answer_options_item survey_input'/><span color='blue' class='remove-option' data-remove-option-id=" + option_count + "><i class='fa fa-trash' aria-hidden='true'></i></span></div>")
   $("#option-" + option_count + "").after("<div class='Add_Answer_option_div'><font color='blue' class='Add_Answer_options_item'>Add option</font></div>");
 }
 

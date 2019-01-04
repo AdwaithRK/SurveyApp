@@ -44,6 +44,10 @@ class SurveysController < ApplicationController
     end
   end
 
+  def delete
+    Survey.find_by_link(params[:link]).destroy
+  end
+
   private
 
   def permit_answer_array
@@ -61,5 +65,7 @@ class SurveysController < ApplicationController
               type: 'text/csv; charset=utf-8; header=present',
               disposition: "attachment; filename=#{@survey.title}_survey_data.csv")
   end
+
+
 
 end

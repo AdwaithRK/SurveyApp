@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get '/surveys/:link', to: 'surveys#attend'
   post '/surveys/submit', to: 'surveys#submit'
   post '/surveys/invite', to: 'surveys#invite'
+  delete '/surveys/delete', to: 'surveys#delete'
   #rewritten
 
   # resources :surveys, only: [:new, :create] do

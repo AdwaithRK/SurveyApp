@@ -1,4 +1,6 @@
 
+<%= render 'layouts/add_survey_button' %>
+
 <%if current_user.isadmin?%>
   <!-- <%= button_to "New Survey", new_survey_path, class: "btn btn-dark new-survey-button" ,method: :get %> -->
 
@@ -6,9 +8,9 @@
     <h3 style="text-align: center;margin-top: 8px;">Your surveys </h3>
     <div class="d-flex justify-content-center">
     <table class="front-table table-hover">
-    <thead><tr> <th>survey title</th> <th>sharable link</th> <th>download csv</th> <th>invite</th> </th></thead>
+    <thead><tr> <th>survey title</th> <th>sharable link</th> <th>download csv</th> <th>invite</th> <th>delete</th>  </tr></thead>
     <% @surveys.each do |survey| %>
-      <tr>
+      <tr id="<%=survey.link%>">
         <td width="10%"><%=survey.title %></td>  <td class="link-copied-shared"><input  onclick="copyLink(this)" class="copy-link" value = "<%=root_url%>surveys/<%=survey.link%>"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
           <!-- <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %> -->
         <td><%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %></td>
@@ -17,13 +19,15 @@
           <span class="invite">Send Invite</span>
         </span>
         </td>
+        <td>
+          <i class='fa fa-trash delete-survey-button' aria-hidden='true' data-survey-link="<%=survey.link%>"></i>
+        </td>
         <%= render :partial => 'invite_mailer_modal', locals: {survey_link: survey.link, survey_title: survey.title, inviter: current_user.firstname} %>
       </tr>
     <%end%>
     </table>
     </div>
     <div class="d-flex new-survey-button">
-    <%= button_to "New Survey", new_survey_path, class: "btn btn-dark new-survey-button" ,method: :get %>
     </div>
   </div>
 <%end%>
