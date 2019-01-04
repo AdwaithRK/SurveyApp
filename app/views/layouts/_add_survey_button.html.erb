@@ -1,1 +1,3 @@
- <%= button_to "plus", new_survey_url, method: :get, class: "button_plus glyphicon glyphicon-plus" %>
+<%= button_to new_survey_url, method: :get,class: "button_plus" do%>
+  <i class="fas fa-plus size-plus-button"></i>
+<% end %>

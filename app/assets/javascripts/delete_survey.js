@@ -1,14 +1,28 @@
-$('body').on("click", ".delete-survey-button", function () {
+
+$(document).on('turbolinks:load', function () {
+
+  $('body').on("click", ".delete-survey-button", function () {
     survey_link = this.getAttribute("data-survey-link")
 
-    this.get
+    console.log("heloo from delete")
+    debugger
+
     $.ajax({
-        type: "DELETE",
-        url: "/surveys/delete",
-        data: {
-          survey: { title: surveytitle, description: form_description, questions_attributes: questions, question_count: question_count }
+      type: "DELETE",
+      url: "/surveys/delete",
+      data: {
+        link: survey_link
+      },
+      success: function (data) {
+        console.log(data.msg)
+        if (data.msg == "destroyed") {
+          $("#survey_table_" + survey_link + "").hide('slow', function () { $("#survey_table_" + survey_link + "").remove(); })
         }
-  
       }
-      )
+
+    }
+    )
+
+  })
+
 })

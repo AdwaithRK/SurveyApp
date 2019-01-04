@@ -122,7 +122,7 @@ input {
 }
 
 .front-table{
-  width:80%;
+  width:90%;
   // max-width: 900px;
   border: solid 1px #a2a0a0;
   margin-left: 20px;
@@ -130,9 +130,9 @@ input {
   table-layout: fixed;
 }
 
-td {
-    width: 25%;
-}
+// td {
+//     width: 15%;
+// }
 
 .new-survey-button{
   flex-direction: row-reverse;
@@ -143,5 +143,20 @@ td {
 .invite:hover{
   color: blue;
   cursor: pointer; 
+}
+
+.size-plus-button{
+    width: 25px;
+    height: 25px;
+}
+
+.font-table-delete{
+    text-align: center; 
+    vertical-align: middle;
+}
+
+.middle-front-table{
+    text-align: center; 
+    vertical-align: middle;
 }
 

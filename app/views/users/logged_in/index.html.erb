@@ -8,20 +8,30 @@
     <h3 style="text-align: center;margin-top: 8px;">Your surveys </h3>
     <div class="d-flex justify-content-center">
     <table class="front-table table-hover">
-    <thead><tr> <th>survey title</th> <th>sharable link</th> <th>download csv</th> <th>invite</th> <th>delete</th>  </tr></thead>
+    <thead><tr> <th>survey title</th> <th>sharable link</th> <th class="middle-front-table">download csv</th> <th class="middle-front-table">invite</th> <th class="font-table-delete">delete</th>  <th class="middle-front-table">stats</th></tr></thead>
     <% @surveys.each do |survey| %>
-      <tr id="<%=survey.link%>">
+      <tr id="survey_table_<%=survey.link%>">
         <td width="10%"><%=survey.title %></td>  <td class="link-copied-shared"><input  onclick="copyLink(this)" class="copy-link" value = "<%=root_url%>surveys/<%=survey.link%>"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
           <!-- <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %> -->
-        <td><%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %></td>
-        <td>
-        <span id="new_category" data-toggle="modal" data-target="#<%=survey.link%>">
+        <td class="middle-front-table"><%= link_to "download csv", surveys_stats_path(link: survey.link, format: 'csv' ), :class => "button" %></td>
+        <td class="middle-front-table">
+        <span id="new_category " data-toggle="modal" data-target="#<%=survey.link%>">
           <span class="invite">Send Invite</span>
         </span>
         </td>
-        <td>
-          <i class='fa fa-trash delete-survey-button' aria-hidden='true' data-survey-link="<%=survey.link%>"></i>
+        <td class="font-table-delete">
+          <span class="delete-survey-button" data-survey-link="<%=survey.link%>">
+            <i class='fa fa-trash' aria-hidden='true'></i>
+          </span>
         </td>
+
+        <td class="middle-front-table">
+          <%= link_to surveys_stats_survey_url(link: survey.link), method: :get do%>
+            <i class="fa fa-bar-chart" aria-hidden="true"></i>
+          <% end %>
+        </td>
+
+
         <%= render :partial => 'invite_mailer_modal', locals: {survey_link: survey.link, survey_title: survey.title, inviter: current_user.firstname} %>
       </tr>
     <%end%>

@@ -5,6 +5,7 @@
 
 <div class="form-orientation question-box">
   <input type="hidden" name="survey" value="<%=@survey.id%>">
+  Name: <input type="text" name="username" class="response-submit-name" required>
   <ul>
   <%@survey.questions.each do |question|%>
     <%input_type = question.question_type%>
