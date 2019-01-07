@@ -18,7 +18,8 @@ class SurveysController < ApplicationController
 
   def submit
     attempt_id = Attempt.create(survey_id: params[:survey_id]).id
-    answers = Answer.format_question(params[:question_array], params[:survey_id], params[:user_name],attempt_id, current_user)
+    answers = Answer.format_question(params[:question_array], params[:survey_id],
+                                     params[:user_name], attempt_id, current_user)
     Answer.create(answers)
     #answer = Answer.save(answers)
     #if answer.save
@@ -45,8 +46,7 @@ class SurveysController < ApplicationController
   end
 
   def stats_survey
-    @survey = Survey.find_by_link(params[:link])
-    Answer.generates_stats(params[:link])
+    @array = Answer.generates_stats(params[:link])
   end
 
   def delete

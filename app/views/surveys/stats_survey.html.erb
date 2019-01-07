@@ -1,0 +1,14 @@
+<table class="front-table table-hover">
+    <tr>
+        <%@array.first.each do |row|%>
+            <th><%=row%></th>
+        <%end%>
+    </tr>
+    <%@array.slice(1..-1).each do |row|%>
+        <tr>
+            <%row.each do |col|%>
+            <td><%=col%></td>
+            <%end%>
+        </tr>
+    <%end%>
+</table>

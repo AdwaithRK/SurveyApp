@@ -38,7 +38,8 @@ $(document).on('turbolinks:load', function () {
     $('#question').val('');
     add_save_survey_button()
     initial_state_question_box()
-
+    var question_box = document.getElementById('question-box')
+    question_box.scrollIntoView()
   })
 
   $('body').on("click", ".save-survey-button", function () {

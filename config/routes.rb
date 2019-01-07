@@ -5,6 +5,10 @@ Rails.application.routes.draw do
   
   root to: redirect('/register/cmon_let_me_in')
 
+
+  get '/features/edit_pro_pic'
+  post '/features/save_new_pro_pic'
+
   get '/logged_in', to: 'users/logged_in#index'
   # get '/register', to: 'devise/registrations#new'
   

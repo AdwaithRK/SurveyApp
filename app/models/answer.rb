@@ -29,7 +29,7 @@ class Answer < ApplicationRecord
     answer = []
     answer << question_header()
     generate_csv_row { |value| answer << value }
-    byebug
+    answer
   end
 
   def self.generate_csv_row
@@ -63,7 +63,7 @@ class Answer < ApplicationRecord
 
     records = @questions.pluck(:question, :id)
     @questions_array = records.map(&:first)
-    @questions_array.unshift('')
+    @questions_array.unshift('username')
     @question_id_array = records.map(&:second)
     @questions_array
   end
