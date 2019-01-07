@@ -29,9 +29,11 @@ $(document).on('turbolinks:load', function () {
     console.log("trying to save")
     ++confirmed_question_no
     question_save = save_question()
+    debugger
     option_save = save_option()
     $(question_save).append(option_save)
     index = AddQuestion()
+    $(question_save[0].getElementsByTagName('p')).attr('data-question-no', index)
     question_save = AddDeleteButton(index, question_save)
     $(".confirmed-question-box").append(question_save)
     AddDeleteButton()

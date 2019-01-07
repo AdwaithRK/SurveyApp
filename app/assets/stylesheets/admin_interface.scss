@@ -9,7 +9,7 @@ input {
   // width: 800px;
   // margin-left: 200px !important;
   background: transparent;
-  border-bottom: .3px solid gray;
+  // border-bottom: .3px solid gray;
 }
 
 .title {
@@ -122,12 +122,13 @@ input {
 }
 
 .front-table{
-  width:90%;
+  width:90% !important;
   // max-width: 900px;
-  border: solid 1px #a2a0a0;
   margin-left: 20px;
   margin-bottom: 20px;
   table-layout: fixed;
+
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 // td {
@@ -153,10 +154,13 @@ input {
 .font-table-delete{
     text-align: center; 
     vertical-align: middle;
+    cursor: pointer;
 }
 
 .middle-front-table{
     text-align: center; 
     vertical-align: middle;
 }
+
+
 

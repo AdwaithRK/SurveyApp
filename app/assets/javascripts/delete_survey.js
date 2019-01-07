@@ -5,7 +5,7 @@ $(document).on('turbolinks:load', function () {
     survey_link = this.getAttribute("data-survey-link")
 
     console.log("heloo from delete")
-    debugger
+
 
     $.ajax({
       type: "DELETE",

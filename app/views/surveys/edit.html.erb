@@ -1,0 +1,30 @@
+<%
+=begin%>
+ <%= form_with url: survey_path(@survey),  method: :put do %> 
+<%
+=end%>
+
+<div id="form-edit">
+
+<%= nested_form_for @survey do |survey_form| %>
+  <div class = "title"><%= survey_form.text_field :title %></div>
+
+<div class = "form-orientation"><%= survey_form.text_field :description%></div>
+
+<div class="form-orientation question-box">
+    <ul>
+        <%= survey_form.fields_for :questions do |question| %>
+          <li> <%= question.text_field :question %>
+          <ul>
+            <%= question.fields_for :question_options do |option| %>
+              <li><%= option.text_field :option %>
+            <%end%>
+          </ul>
+        <%end%>
+    </ul>
+</div>
+
+<%= submit_tag%>
+<% end %>
+
+</div>

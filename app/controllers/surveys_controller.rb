@@ -16,6 +16,19 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_link(params[:link])
   end
 
+  def edit
+    @survey = Survey.find_by_link(params[:id])
+  end
+
+  def update
+    @survey = Survey.find_by_link(params[:id])
+    params.permit!
+    @survey.update(params[:survey])
+  end
+
+
+
+
   def submit
     attempt_id = Attempt.create(survey_id: params[:survey_id]).id
     answers = Answer.format_question(params[:question_array], params[:survey_id],

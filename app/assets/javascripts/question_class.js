@@ -19,6 +19,15 @@ class Question {
         this.options = options
     }
 
+    ReplaceOption(oldOption, newOption) {
+        var optionIndex = this.options.indexOf(oldOption)
+        this.options[optionIndex] = newOption
+    }
+
+    ChangeQuestion(question) {
+        this.question = question
+    }
+
     SaveQuestion() {
         questionArray.push(this)
     }

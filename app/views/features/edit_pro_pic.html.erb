@@ -1,0 +1,17 @@
+<div class="avatar">        
+  <%= form_tag({controller: "features", action: 'save_new_pro_pic'}, multipart: true, method: "post", class: "image_edit_form") do |f| %>
+      <div class="save-image" id = "container">
+          <div class="btn fileinput-button avatar box">
+              <%= file_field_tag :avatar, id: 'input_image'  %>
+              <% if current_user.avatar.attached? %>
+                <%= image_tag(current_user.avatar, :id => "avatar_image_1") %>
+              <% else %>
+                <img src="<%= asset_path( 'image.jpg' ) %>", id = "avatar_image_1" />
+              <% end %>
+          </div>
+          <div class= "box">
+            <button type="submit" class="btn btn-primary save-image">Save</button>
+          </div>
+      </div>
+  <% end %>
+ </div>

@@ -17,9 +17,9 @@ function save_option() {
       optionsArray.push(option_value)
       if (option_value != "") {
         $("#option_" + option_id_no + "").val("")
-        $(option_save).append("  <li>" + option_value + "</li><br>")
+        $(option_save).append("  <li> <p style='display: inline;' data-editable-option>" + option_value + "</li><br>")
       }
-      debugger
+
     }
     option_save.append("</ul>")
   }
@@ -32,7 +32,7 @@ function save_option() {
 function save_question() {
   question = $('#question').val()
   var question_save = $("<div id='confirmed_question_div_" + confirmed_question_no + "' class='confirmed_question_div'>");
-  $(question_save).append("<div id='confirmed_question'>Q. " + question + "<span class='type-board'>type:" + selected_option + "</span></div>");
+  $(question_save).append("<div id='confirmed_question'>Q. <p style='display: inline;' id='question_text'  data-editable-question>" + question + "</p><span class='type-board'>type:" + selected_option + "</span></div>");
   return question_save;
 }
 
@@ -53,7 +53,6 @@ function initial_state_question_box() {
   $('.save-question-button').remove()
 
   if (selected_option == "text") {
-    debugger;
     $('.Answer_Options').append("<div><input type='text' value='' placeholder='text answer'  class='Answer_options_item' readonly /></div>")
   }
   else {
@@ -73,10 +72,8 @@ function Add_option() {
 
 function remove_option(option_attr) {
   index = option_array.indexOf(parseInt(option_attr, 10))
-  debugger
   if (index > -1) {
     option_array.splice(index, 1);
-    debugger
   }
   $("#option-" + option_attr + "").remove()
   option_count--
@@ -99,7 +96,6 @@ function EmptyOptionsArray() {
 
 function removeQuestion(index, confirmed_ques) {
   questionArray.splice(index, 1);
-  debugger
   $("#confirmed_question_div_" + confirmed_ques + "").hide('slow', function () { $("#confirmed_question_div_" + confirmed_ques + "").remove(); })
 }
 
@@ -111,24 +107,20 @@ function AddDeleteButton(index, question_save) {
 
 function questionArrayToJson() {
   let QuestionArray = questionArray.map(function (individualquestion) {
-    debugger
     question_obj = new Object
     question_obj.question = individualquestion.question
     question_obj.option_count = individualquestion.optionCount
-    question_obj.question_type = individualquestion.questionType
+    question_obj.question_type = indivdata - question - nodualquestion.questionType
     question_obj.has_options = individualquestion.has_options
-    debugger
     let new_options = individualquestion.options.map(function (e) {
       obj = new Object
       obj.option = e
       return obj
     })
-    debugger
     question_obj.question_options_attributes = new_options
     return question_obj
   }
   )
-  debugger
   return QuestionArray
 }
 
@@ -148,4 +140,12 @@ function getQuestionCount() {
 function copyLink(elem) {
   elem.select()
   document.execCommand('copy')
+}
+
+function changeEditedQuestion(index, question) {
+  questionArray[index].ChangeQuestion(question)
+}
+
+function changeEditedOption(index, oldOption, newOption) {
+  questionArray[index].ReplaceOption(oldOption, newOption)
 }

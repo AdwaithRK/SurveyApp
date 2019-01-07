@@ -10,6 +10,8 @@ class Survey < ApplicationRecord
   validates :link, uniqueness: true
   before_validation :generate_token, on: :create
 
+  # self.primary_key = 'link'
+
   def generate_token
     begin
       self.link = SecureRandom.urlsafe_base64(64, false)

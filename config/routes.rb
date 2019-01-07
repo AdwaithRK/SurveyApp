@@ -13,7 +13,7 @@ Rails.application.routes.draw do
   # get '/register', to: 'devise/registrations#new'
   
   # these routes can be rewritten as collection below
-  resources :surveys, only: [:new, :create]
+  resources :surveys, only: [:new, :create, :edit, :update]
   get '/surveys/stats', to: 'surveys#stats'
   get '/surveys/stats_survey', to: 'surveys#stats_survey'
   get '/surveys/thanks', to: 'surveys#thanks'
@@ -21,9 +21,10 @@ Rails.application.routes.draw do
   post '/surveys/submit', to: 'surveys#submit'
   post '/surveys/invite', to: 'surveys#invite'
   delete '/surveys/delete', to: 'surveys#delete'
+  # put '/surveys/update', to: 'surveys#update'
   #rewritten
 
-  # resources :surveys, only: [:new, :create] do
+  # resources :surveys, only: [:new, :create, :update, :edit] do
   #   collection do
   #     get 'stats'
   #     get 'thanks'

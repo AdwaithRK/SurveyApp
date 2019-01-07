@@ -2,7 +2,7 @@
 <div class="container">
     <a href='/logged_in'> <i class="fa fa-home fa-3x home-button" aria-hidden="true">  </i> </a>
     <% if current_user.avatar.attached? %>
-        <a href="<%=features_edit_pro_pic_url %>"> <%=image_tag (current_user.avatar), :title => current_user.name, :class => "style-pro-pic"%></a> 
+        <a href="<%=features_edit_pro_pic_url %>"> <%=image_tag (current_user.avatar), :title => current_user.firstname, :class => "style-pro-pic"%></a> 
     <%else%>
         <a href="<%=features_edit_pro_pic_url %>"><img src="<%= asset_path( 'image.jpg' ) %>" class="style-pro-pic"/></a>   
     <%end%> 
