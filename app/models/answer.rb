@@ -30,6 +30,11 @@ class Answer < ApplicationRecord
     answer << question_header()
     generate_csv_row { |value| answer << value }
     answer
+    # grouped_answers = Answer.where(survey_id: @survey.id).includes(:user)
+    #                         .group_by(&:attempt_id)
+    # grouped_answers.each do |_key, value|
+    #   byebug
+    # end
   end
 
   def self.generate_csv_row

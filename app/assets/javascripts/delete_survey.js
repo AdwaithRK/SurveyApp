@@ -7,21 +7,30 @@ $(document).on('turbolinks:load', function () {
     console.log("heloo from delete")
 
 
-    $.ajax({
-      type: "DELETE",
-      url: "/surveys/delete",
-      data: {
-        link: survey_link
-      },
-      success: function (data) {
-        console.log(data.msg)
-        if (data.msg == "destroyed") {
-          $("#survey_table_" + survey_link + "").hide('slow', function () { $("#survey_table_" + survey_link + "").remove(); })
-        }
-      }
+    $('#confirm').modal({
+      backdrop: 'static',
+      keyboard: false
+    })
+      .on('click', '#delete', function (e) {
 
-    }
-    )
+        $.ajax({
+          type: "DELETE",
+          url: "/surveys/delete",
+          data: {
+            link: survey_link
+          },
+          success: function (data) {
+            console.log(data.msg)
+            if (data.msg == "destroyed") {
+              $("#survey_table_" + survey_link + "").hide('slow', function () { $("#survey_table_" + survey_link + "").remove(); })
+              $('#confirm').modal('toggle')
+            }
+          }
+
+        }
+        )
+
+      });
 
   })
 

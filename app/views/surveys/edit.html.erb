@@ -12,19 +12,26 @@
 <div class = "form-orientation"><%= survey_form.text_field :description%></div>
 
 <div class="form-orientation question-box">
+  <div class="confirmed_question_div">  
     <ul>
         <%= survey_form.fields_for :questions do |question| %>
           <li> <%= question.text_field :question %>
+          <%= question.link_to_remove "remove" %>
+          <span>question_type: <%= question.select :question_type, options_for_select(["text", "radio", "drop_down", "checkbox"],question.object.question_type ) %>
           <ul>
             <%= question.fields_for :question_options do |option| %>
               <li><%= option.text_field :option %>
+              <%= option.link_to_remove "remove" %>
             <%end%>
+            <p><%= question.link_to_add "Add option", :question_options %></p>
           </ul>
         <%end%>
+        <p><%= survey_form.link_to_add "Add question", :questions %></p>
     </ul>
+  </div>
 </div>
 
-<%= submit_tag%>
+<%= submit_tag "Save changes", class:"btn btn-primary form-orientation" %>
 <% end %>
 
 </div>

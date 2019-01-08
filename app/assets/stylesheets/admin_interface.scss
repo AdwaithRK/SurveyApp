@@ -1,5 +1,5 @@
 .survey_input:focus {
-  border-bottom: 8px solid violet;
+  border-bottom: 3px solid violet;
 }
 
 input {
@@ -9,7 +9,7 @@ input {
   // width: 800px;
   // margin-left: 200px !important;
   background: transparent;
-  // border-bottom: .3px solid gray;
+  border-bottom: .1px solid gray;
 }
 
 .title {
@@ -23,6 +23,7 @@ input {
   margin-top: 50px;
   margin-left: 200px;
   width: 800px;
+  // margin-bottom: 20px;
 
 }
 
@@ -88,7 +89,9 @@ input {
 .Add_Answer_options_item{
     width: 298px;
     margin-left: 30px;
-    margin-bottom: 20px;
+   body {
+    margin-bottom:50px;
+} margin-bottom: 20px;
 }
 
 .remove-option{
@@ -162,5 +165,27 @@ input {
     vertical-align: middle;
 }
 
+footer {
+  // position: absolute; 
+    height: 100px;
+    bottom: 0 !important;
+    width: 100%;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    margin-bottom: 0px
+}
+
+// .bottom-margin{
+//     margin-bottom: 50px !important;
+// }
+
+body {
+    margin-bottom:100px;
+}
+
+html { position: relative; min-height: 100%; } 
 
 
+
+// html { position: relative; min-height: 100%; } body { margin-bottom: 100px; } footer { position: absolute; bottom: 0; width: 100%; height: 100px; //same height as the margin to the bottom of the body }

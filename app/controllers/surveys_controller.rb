@@ -3,7 +3,8 @@ require 'csv'
 class SurveysController < ApplicationController
   before_action :permit_survey_answer, only: [:create]
   before_action :permit_answer_array, only: [:submit]
-  before_action :authenticate_user!, except: [:attend, :submit, :thanks]
+  before_action :permit_update_params, only: [:update]
+  before_action :authenticate_user!, except: %i[attend submit thanks]
 
   def create
     current_user.surveys.create(params[:survey])
@@ -24,10 +25,8 @@ class SurveysController < ApplicationController
     @survey = Survey.find_by_link(params[:id])
     params.permit!
     @survey.update(params[:survey])
+    redirect_to logged_in_url
   end
-
-
-
 
   def submit
     attempt_id = Attempt.create(survey_id: params[:survey_id]).id
@@ -78,12 +77,15 @@ class SurveysController < ApplicationController
     params.permit!
   end
 
+  def permit_update_params
+    params.permit!
+    #params.permit(:survey, :id)
+  end
+
   def send_csv(csv)
     send_data(csv,
               type: 'text/csv; charset=utf-8; header=present',
               disposition: "attachment; filename=#{@survey.title}_survey_data.csv")
   end
-
-
 
 end
