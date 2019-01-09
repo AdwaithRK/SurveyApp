@@ -1,4 +1,5 @@
 require 'csv'
+require 'will_paginate/array'
 # survey controller
 class SurveysController < ApplicationController
   before_action :permit_survey_answer, only: [:create]

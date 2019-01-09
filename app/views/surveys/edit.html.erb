@@ -17,14 +17,17 @@
         <%= survey_form.fields_for :questions do |question| %>
           <li> <%= question.text_field :question %>
           <%= question.link_to_remove "remove" %>
-          <span>question_type: <%= question.select :question_type, options_for_select(["text", "radio", "drop_down", "checkbox"],question.object.question_type ) %>
-          <ul>
-            <%= question.fields_for :question_options do |option| %>
-              <li><%= option.text_field :option %>
-              <%= option.link_to_remove "remove" %>
-            <%end%>
-            <p><%= question.link_to_add "Add option", :question_options %></p>
-          </ul>
+          <span>question_type: <%= question.select :question_type, options_for_select(["text", "radio", "drop_down", "checkbox"],question.object.question_type ),
+                                 {},{:class => "change_type" ,  data: {"question-id": question.object.id} } %>
+          <div id="changed_answer_for_question_<%=question.object.id%>" >
+            <ul>
+              <%= question.fields_for :question_options do |option| %>
+                <li><%= option.text_field :option %>
+                <%= option.link_to_remove "remove" %>
+              <%end%>
+              <p><%= question.link_to_add "Add option", :question_options %></p>
+            </ul>
+          </div>
         <%end%>
         <p><%= survey_form.link_to_add "Add question", :questions %></p>
     </ul>

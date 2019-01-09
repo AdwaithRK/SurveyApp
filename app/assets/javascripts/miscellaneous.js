@@ -110,7 +110,7 @@ function questionArrayToJson() {
     question_obj = new Object
     question_obj.question = individualquestion.question
     question_obj.option_count = individualquestion.optionCount
-    question_obj.question_type = indivdata - question - nodualquestion.questionType
+    question_obj.question_type = individualquestion.questionType
     question_obj.has_options = individualquestion.has_options
     let new_options = individualquestion.options.map(function (e) {
       obj = new Object
