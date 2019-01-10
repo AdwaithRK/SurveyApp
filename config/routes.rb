@@ -32,5 +32,7 @@ Rails.application.routes.draw do
   #     post 'invite'
   #   end
   # end
+
+  match '*path', to: redirect('/'), via: :all
   
 end

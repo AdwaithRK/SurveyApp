@@ -7,7 +7,8 @@ var save_survey_flag = 0;
 
 $(document).on('turbolinks:load', function () {
 
-
+  $('a[data-toggle="tooltip"]').tooltip();
+  
   $('select[name=question_type]').change(function () {
     selected_option = $(this).val();
     option_array = [];
