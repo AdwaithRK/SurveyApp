@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  
+  root to: redirect('/register/sign_up')
   get 'surveys/create'
   # devise_for :users
-  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'cmon_let_me_in' }
-  
-  root to: redirect('/register/cmon_let_me_in')
+  devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'sign_up' }
 
 
   get '/features/edit_pro_pic'
@@ -11,7 +11,6 @@ Rails.application.routes.draw do
 
   get '/logged_in', to: 'users/logged_in#index'
   # get '/register', to: 'devise/registrations#new'
-  
   # these routes can be rewritten as collection below
   resources :surveys, only: [:new, :create, :edit, :update]
   get '/surveys/stats', to: 'surveys#stats'
@@ -32,7 +31,9 @@ Rails.application.routes.draw do
   #     post 'invite'
   #   end
   # end
-
-  match '*path', to: redirect('/'), via: :all
+  #   get '*all', to: 'users/logged_in#index', 
+  match '*path', to: redirect('/404'), via: :all, constraints: lambda { |req|
+    req.path.exclude? 'rails/active_storage'
+  }
   
 end

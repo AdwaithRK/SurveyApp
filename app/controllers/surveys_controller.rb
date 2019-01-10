@@ -6,6 +6,7 @@ class SurveysController < ApplicationController
   before_action :permit_answer_array, only: [:submit]
   before_action :permit_update_params, only: [:update]
   before_action :authenticate_user!, except: %i[attend submit thanks]
+  before_action :find_survey, only: [:attend, :edit, :update, :stats]
 
   def create
     current_user.surveys.create(params[:survey])
@@ -14,17 +15,11 @@ class SurveysController < ApplicationController
 
   def new; end
 
-  def attend
-    @survey = Survey.find_by_link(params[:link])
-  end
+  def attend; end
 
-  def edit
-    @survey = Survey.find_by_link(params[:id])
-  end
+  def edit; end
 
   def update
-    @survey = Survey.find_by_link(params[:id])
-    params.permit!
     @survey.update(params[:survey])
     redirect_to logged_in_url
   end
@@ -51,15 +46,17 @@ class SurveysController < ApplicationController
   end
 
   def stats
-    @survey = Survey.find_by_link(params[:link])
     respond_to do |format|
-      format.js
       format.csv { send_csv(Answer.generate_csv(params[:link])) }
     end
   end
 
   def stats_survey
     @array = Answer.generates_stats(params[:link])
+    if @array.length == 1
+      flash[:error] = 'Entries not found.'
+      redirect_to '/logged_in'
+    end
   end
 
   def delete
@@ -87,6 +84,21 @@ class SurveysController < ApplicationController
     send_data(csv,
               type: 'text/csv; charset=utf-8; header=present',
               disposition: "attachment; filename=#{@survey.title}_survey_data.csv")
+  end
+
+  def find_survey
+    link = params[:link] || params[:id]
+    @survey = Survey.find_by_link(link)
+    # flash.keep
+    # redirect_to root_url, flash: { notice: "Record not found." } if @survey.nil?
+    if @survey.nil?
+      flash[:error] = 'No such survey.'
+      if current_user
+        redirect_to '/logged_in'
+      else
+        redirect_to root_url
+      end
+    end
   end
 
 end

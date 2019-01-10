@@ -30,12 +30,18 @@
           <%end%>
       </div>
     </header>
-    <main class="content">
-    <% flash.each do |key, value| %>
-      <div class="<%= flash_class(key) %>">
-            <%= value %>
-      </div>
-    <% end %>
+      <% if flash[:notice] %>
+          <div class="notification is-primary global-notification">
+            <p class="notice alert-success d-flex justify-content-center"><%= flash[:notice] %></p>
+          </div>
+      <% end %>
+
+      <% if flash[:error] %>
+        <div class="notification is-primary global-notification">
+          <p class="alert alert-danger d-flex justify-content-center"><%= flash[:error] %></p>
+        </div>
+      <% end %>
+
       <%= yield %>
     </main>
     

@@ -39,7 +39,7 @@ function save_question() {
 function add_save_survey_button() {
   if (save_survey_flag == 0) {
     $('.form_div').after(
-      "<button type='button' class='save-survey-button btn btn-primary form-orientation'>save survey</button>"
+      "<button type='button' class='save-survey-button btn btn-primary form-orientation margin-bottom-50'>save survey</button>"
     )
     // $('.comfirmed-question-box').css('display', 'inline-block');
     save_survey_flag = 1;

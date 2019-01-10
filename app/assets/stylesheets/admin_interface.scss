@@ -166,8 +166,8 @@ input {
 }
 
 footer {
-  // position: absolute; 
-    height: 100px;
+    position: absolute; 
+    height: 50px;
     bottom: 0 !important;
     width: 100%;
     bottom: 0px;
@@ -185,6 +185,11 @@ body {
 }
 
 html { position: relative; min-height: 100%; } 
+
+
+.margin-bottom-50{
+  margin-bottom: 50px !important;
+}
 
 
 

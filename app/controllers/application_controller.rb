@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def check_signup
     unless user_signed_in?
-      '/register/cmon_let_me_in'
+      '/register/sign_up'
     end
   end
 

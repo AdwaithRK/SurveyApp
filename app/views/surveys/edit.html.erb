@@ -17,7 +17,7 @@
         <%= survey_form.fields_for :questions do |question| %>
           <li> <%= question.text_field :question %>
           <%= question.link_to_remove "remove" %>
-          <span>question_type: <%= question.select :question_type, options_for_select(["text", "radio", "drop_down", "checkbox"],question.object.question_type ),
+          <span>question_type: <%= question.select :question_type, options_for_select([ "select type" ,"text", "radio", "drop_down", "checkbox"],selected: question.object.question_type, disabled: "select type" ),
                                  {},{:class => "change_type" ,  data: {"question-id": question.object.id} } %>
           <div id="changed_answer_for_question_<%=question.object.id%>" >
             <ul>
@@ -34,7 +34,7 @@
   </div>
 </div>
 
-<%= submit_tag "Save changes", class:"btn btn-primary form-orientation" %>
+<%= submit_tag "Save changes", class:"btn btn-primary form-orientation margin-bottom-50" %>
 <% end %>
 
 </div>

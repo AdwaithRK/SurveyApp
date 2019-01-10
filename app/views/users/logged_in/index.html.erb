@@ -1,124 +1,56 @@
 
-<%= render 'layouts/add_survey_button' %>
  <%if current_user.isadmin?%>
-<%
-=begin%>
- <div class="p-3 front-table"> 
-<%
-=end%>
+  <%= render 'layouts/add_survey_button' %>
+  <%if @surveys.length != 0 %>
+      <span id = "page_no" value="<%=@surveys.current_page %>"></span>
+      <span id = "total_pages" value="<%= @surveys.total_pages %>"></span>
+      <span id = "record_in_current_page" value="<%= @surveys.length %>" ></span>
 
-  <%
-=begin%>
-    <!-- <%= button_to "New Survey", new_survey_path, class: "btn btn-dark new-survey-button" ,method: :get %> -->
-  <% @surveys.each do |survey| %>
-  <div class="p-3 survey">
-    <div class="p-3 font-weight-bold">
-      <%=survey.title %>
-    </div>
-    <div>
-      <input  onclick="copyLink(this)" class="copy-link" value = "<%=root_url%>surveys/<%=survey.link%>"></input>
-    </div>
-    <div>
-      <%= link_to surveys_stats_path(link: survey.link, format: 'csv' ) do %><i class="fa fa-download" aria-hidden="true"></i><%end%>
-      <span id="new_category " class="p-3" data-toggle="modal" data-target="#<%=survey.link%>">
-        <span class="invite"><i class="fas fa-paper-plane"></i></span>
-      </span>
-      <span class="p-3">
-        <%= link_to surveys_stats_survey_url(link: survey.link), method: :get do%>
-          <i class="fa fa-bar-chart" aria-hidden="true"></i>
-        <% end %>
-      </span>
-    </div>
-    <span class="delete-survey-button" data-survey-link="<%=survey.link%>">
-      <i class='fa fa-trash' aria-hidden='true'></i>
-    </span>
-  </div>
-  <% end %>
-</div> 
-<%
-=end%>
+      <div class="survey-share-stats-table">
+        <h3 style="text-align: center;margin-top: 8px; font-family: cursive;">Your Surveys </h3>
+        <div class="d-flex justify-content-center">
 
-     <span id = "page_no" value="<%=@surveys.current_page %>"></span>
-     <span id = "total_pages" value="<%= @surveys.total_pages %>"></span>
-     <span id = "record_in_current_page" value="<%= @surveys.length %>" ></span>
+          <table class="table front-table table-hover p-3">
+          <thead class="m-3 p-3"><tr> <th>Title</th> <th>Link</th> <th class="middle-front-table">Report</th> <th class="middle-front-table">Invite</th> <th class="font-table-delete">Delete</th>  <th class="middle-front-table">Stats</th><th class="middle-front-table">Edit</th></tr></thead>
+          <tbody class="m-3 p-3">
+            <% @surveys.each do |survey| %>
+              <tr id="survey_table_<%=survey.link%>" class="p-3">
+                <td width="10%"><%=survey.title %></td>  <td class="link-copied-shared"><input  onclick="copyLink(this)" class="copy-link" value = "<%=root_url%>surveys/<%=survey.link%>"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
+                  <!-- <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %> -->
+                <td class="middle-front-table"><%= link_to surveys_stats_path(link: survey.link, format: 'csv' ) do %><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Download CSV"></i><%end%></td>
+                <td class="middle-front-table">
+                <span id="new_category " data-toggle="modal" data-target="#<%=survey.link%>">
+                  <span class="invite"><i class="fas fa-paper-plane" data-toggle="tooltip" data-placement="top" title="Send Email" ></i></span>
+                </span>
+                </td>
+                <td class="font-table-delete">
+                  <span class="delete-survey-button" data-survey-link="<%=survey.link%>">
+                    <i class='fa fa-trash' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Delete Survey"></i>
+                  </span>
+                </td>
 
-  <div class="survey-share-stats-table">
-    <h3 style="text-align: center;margin-top: 8px; font-family: cursive;">Your Surveys </h3>
-    <div class="d-flex justify-content-center">
-    <table class="table front-table table-hover p-3">
-    <thead class="m-3 p-3"><tr> <th>Title</th> <th>Link</th> <th class="middle-front-table">Report</th> <th class="middle-front-table">Invite</th> <th class="font-table-delete">Delete</th>  <th class="middle-front-table">Stats</th><th class="middle-front-table">Edit</th></tr></thead>
-    <tbody class="m-3 p-3">
+                <td class="middle-front-table">
+                  <%= link_to surveys_stats_survey_url(link: survey.link), method: :get do%>
+                    <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Get Responses"></i>
+                  <% end %>
+                </td>
 
-      <% @surveys.each do |survey| %>
-        <tr id="survey_table_<%=survey.link%>" class="p-3">
-          <td width="10%"><%=survey.title %></td>  <td class="link-copied-shared"><input  onclick="copyLink(this)" class="copy-link" value = "<%=root_url%>surveys/<%=survey.link%>"></input> </td><!-- <%= button_to "stats", { :controller => "/surveys", :action => "stats", link: survey.link}, {:method=>:get} %>  -->
-            <!-- <%= link_to "stats", surveys_stats_path(link: survey.link), remote: :true, :class => "button" %> -->
-          <td class="middle-front-table"><%= link_to surveys_stats_path(link: survey.link, format: 'csv' ) do %><i class="fa fa-download" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Download CSV"></i><%end%></td>
-          <td class="middle-front-table">
-          <span id="new_category " data-toggle="modal" data-target="#<%=survey.link%>">
-            <span class="invite"><i class="fas fa-paper-plane" data-toggle="tooltip" data-placement="top" title="Send Email" ></i></span>
-          </span>
-          </td>
-          <td class="font-table-delete">
-            <span class="delete-survey-button" data-survey-link="<%=survey.link%>">
-              <i class='fa fa-trash' aria-hidden='true' data-toggle="tooltip" data-placement="top" title="Delete Survey"></i>
-            </span>
-          </td>
-
-          <td class="middle-front-table">
-            <%= link_to surveys_stats_survey_url(link: survey.link), method: :get do%>
-              <i class="fa fa-bar-chart" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Get Responses"></i>
-            <% end %>
-          </td>
-
-          <td class="middle-front-table">
-            <%= link_to edit_survey_url(survey) , method: :get do%>
-              <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit the survey"></i>
-            <% end %>
-          </td>
+                <td class="middle-front-table">
+                  <%= link_to edit_survey_url(survey) , method: :get do%>
+                    <i class="fa fa-pencil" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Edit the survey"></i>
+                  <% end %>
+                </td>
 
 
-          <%= render :partial => 'invite_mailer_modal', locals: {survey_link: survey.link, survey_title: survey.title, inviter: current_user.firstname} %>
-        </tr>
-      <%end%>
+                <%= render :partial => 'invite_mailer_modal', locals: {survey_link: survey.link, survey_title: survey.title, inviter: current_user.firstname} %>
+              </tr>
+            <%end%>
+          </tbody>
+          </table>
 
-      
-    </tbody>
-    </table>
-    </div>
-    <div class="d-flex new-survey-button">
-    </div>
-
-    <div class="digg_pagination">
-      <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>
-    </div>
-
-
-
-      <%
-=begin%>
- <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %> 
-<%
-=end%>
-  </div>
-
-
-  <%
-=begin%>
- <div id="confirm" class="modal hide fade">
-    <div class="modal-body">
-      Are you sure?
-    </div>
-    <div class="modal-footer">
-      <button type="button" data-dismiss="modal" class="btn btn-primary" id="delete">Delete</button>
-      <button type="button" data-dismiss="modal" class="btn">Cancel</button>
-    </div>
-  </div> 
-<%
-=end%>
-
-<%= render 'modal'%>
-
-
-
+          <div class="digg_pagination">
+            <%= will_paginate @surveys, renderer: BootstrapPagination::Rails %>
+          </div>
+    <%= render 'modal'%>
+  <%end%>
 <%end%>
