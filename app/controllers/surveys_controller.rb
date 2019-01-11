@@ -7,6 +7,8 @@ class SurveysController < ApplicationController
   before_action :permit_update_params, only: [:update]
   before_action :authenticate_user!, except: %i[attend submit thanks]
   before_action :find_survey, only: [:attend, :edit, :update, :stats]
+  after_action  :redirect_after_survey_submit, only: [:submit]
+  before_action :check_question_presence, only: [:submit]
 
   def create
     current_user.surveys.create(params[:survey])
@@ -31,12 +33,12 @@ class SurveysController < ApplicationController
     Answer.create(answers)
     #answer = Answer.save(answers)
     #if answer.save
-    unless current_user
-      redirect_to surveys_thanks_url
-    else
-      redirect_to logged_in_url
-    end
-    #end
+    # unless current_user
+    #   redirect_to surveys_thanks_url
+    # else
+    #   redirect_to logged_in_url
+    # end
+    # #end
   end
 
   def thanks; end
@@ -101,4 +103,19 @@ class SurveysController < ApplicationController
     end
   end
 
+  def redirect_after_survey_submit
+    flash[:notice] = 'Successfully completed survey.'
+    redirect_to current_user ? logged_in_path : survey_thanks
+  end
+
+  def check_question_presence
+    if params[:question_array].nil?
+      flash[:error] = 'No question to submit'
+      if current_user
+        redirect_to '/logged_in'
+      else
+        redirect_to root_url
+      end
+    end
+  end
 end

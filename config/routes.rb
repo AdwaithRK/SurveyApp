@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   
   root to: redirect('/register/sign_up')
-  get 'surveys/create'
   # devise_for :users
   devise_for :users, path: '', path_names: { sign_in: 'login', sign_out: 'logout', password: 'secret', confirmation: 'verification', unlock: 'unblock', registration: 'register', sign_up: 'sign_up' }
 
@@ -20,6 +19,7 @@ Rails.application.routes.draw do
   post '/surveys/submit', to: 'surveys#submit'
   post '/surveys/invite', to: 'surveys#invite'
   delete '/surveys/delete', to: 'surveys#delete'
+  get '/register', to: redirect('/register/sign_up')
   # put '/surveys/update', to: 'surveys#update'
   #rewritten
 

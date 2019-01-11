@@ -20,8 +20,6 @@ $(document).on('turbolinks:load', function () {
       type: "POST",
       url: "/surveys/submit",
       data: answers
-    }).done(function () {
-      alert("form submitted successfully")
     })
 
   })
